@@ -1,0 +1,10 @@
+llama-index
+llama-index-llms-groq
+llama-index-embeddings-huggingface
+sqlalchemy
+python-dotenv
+fastapi 
+nest-asyncio 
+pyngrok 
+uvicorn
+streamlit

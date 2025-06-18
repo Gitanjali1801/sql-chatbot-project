@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI SQL Chatbot</title>
+  <style>
+    #chat-history {
+      white-space: pre-wrap;
+      background-color: #f0f0f0;
+      padding: 12px;
+      border-radius: 6px;
+      max-width: 600px;
+      margin-top: 20px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ask a question about CUSTOMER Database</h2>
+
+  <input type="text" id="query" placeholder="Type your question..." style="width: 400px;" />
+  <button onclick="sendQuery()">Submit</button>
+
+  <div id="chat-history"></div>
+
+  <script>
+    async function sendQuery() {
+      const inputBox = document.getElementById("query");
+      const responseBox = document.getElementById("chat-history");
+      const userQuery = inputBox.value.trim();
+
+      if (!userQuery) return;
+
+      // Add user message to chat history
+      responseBox.textContent += `\n🧠 You: ${userQuery}`;
+
+      if (userQuery.toUpperCase() === "QUIT") {
+        responseBox.textContent += `\n👋 Session ended. Refresh the page to start over.`;
+        inputBox.disabled = true;
+        return;
+      }
+
+      try {
+        const response = await fetch("/query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: userQuery })
+        });
+
+        const data = await response.json();
+
+        if (data.answer) {
+          responseBox.textContent += `\n🤖 Bot: ${data.answer}\n`;
+        } else if (data.error) {
+          responseBox.textContent += `\n❌ Error: ${data.error}\n`;
+        } else {
+          responseBox.textContent += `\n⚠️ Unexpected response.\n`;
+        }
+
+        inputBox.value = "";
+        inputBox.focus();
+
+      } catch (error) {
+        responseBox.textContent += `\n⚠️ Request failed: ${error.message}\n`;
+      }
+    }
+  </script>
+</body>
+</html>
