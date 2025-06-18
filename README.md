@@ -1,17 +1,53 @@
-# sql-chatbot-project
+# 🧠 SQL Chatbot Project
 
-## 📦 Setup: Node.js + Express
+This is a natural language chatbot that allows users to query a database using plain English. It leverages FastAPI for the backend, LlamaIndex + Groq for generating SQL, and a simple Node.js + HTML frontend.
 
-If you're running this project in a cloud shell (like Google Colab), run the following to install Node.js and dependencies:
+---
+
+## ⚙️ Technologies Used
+
+- **FastAPI** for serving natural language to SQL chatbot
+- **Groq + LlamaIndex** for query generation
+- **SQLite** as the sample database
+- **Node.js + Express** to serve the frontend
+- **Vanilla HTML + JS** UI (optional React-ready)
+- **Ngrok** to expose the FastAPI server for public access
+
+---
+
+## 🚀 Quick Setup
+
+> This guide assumes you're using **Google Colab** or a Linux shell.
+
+### 🔧 1. Install Python Dependencies
 
 ```bash
-# Install the required packages for LLMs
+# Install LLM-related packages
 !pip install -r requirements.txt
 
 # Install Node.js 18
 !curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 !apt-get install -y nodejs npm
 
-# Install required packages
+# Install required Node packages
 !npm install express axios dotenv
 
+
+## 🚦 Run the Full App in Google Colab
+
+After setting up the code and dependencies, run the following commands to:
+
+- ✅ Start FastAPI ()
+- ✅ Run Node.js server
+- ✅ Expose the app to the internet via `ngrok`
+
+# Start FastAPI server on port 8000 (backend)
+!nohup uvicorn app:app --host 0.0.0.0 --port 8000 --reload > fastapi.log 2>&1 &
+
+# Start Node.js server (frontend proxy)
+!nohup node /content/server.js > node.log 2>&1 &
+
+### 🔐 Add Your ngrok Auth Token
+
+```bash
+!ngrok config add-authtoken "ngrok_authentication_code"
