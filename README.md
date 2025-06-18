@@ -48,6 +48,15 @@ After setting up the code and dependencies, run the following commands to:
 !nohup node /content/server.js > node.log 2>&1 &
 
 ### 🔐 Add Your ngrok Auth Token
+from pyngrok import ngrok
+public_url = ngrok.connect(3000)
+print("Access your chatbot at:", public_url)
+```
+
+>Now, use the public URL to open the chatbot. 
 
 ```bash
 !ngrok config add-authtoken "ngrok_authentication_code"
+from pyngrok import ngrok
+public_url = ngrok.connect(3000)
+print("Access your chatbot at:", public_url)
