@@ -17,7 +17,7 @@ This is a natural language chatbot that allows users to query a database using p
 
 ## 🚀 Quick Setup
 
-> This guide assumes you're using **Google Colab** or a Linux shell.
+> This guide assumes you're using **Google Colab**.
 
 ### 🔧 1. Install Python Dependencies
 
@@ -33,12 +33,12 @@ This is a natural language chatbot that allows users to query a database using p
 !npm install express axios dotenv
 
 
-## 🚦 Run the Full App in Google Colab
+## 🚦 Run the Full code in Google Colab
 
 After setting up the code and dependencies, run the following commands to:
 
-- ✅ Start FastAPI ()
-- ✅ Run Node.js server
+- ✅ Start FastAPI () by running app.py
+- ✅ Run Node.js server (server.js)
 - ✅ Expose the app to the internet via `ngrok`
 
 # Start FastAPI server on port 8000 (backend)
@@ -47,15 +47,14 @@ After setting up the code and dependencies, run the following commands to:
 # Start Node.js server (frontend proxy)
 !nohup node /content/server.js > node.log 2>&1 &
 
-### 🔐 Add Your ngrok Auth Token
-from pyngrok import ngrok
-public_url = ngrok.connect(3000)
-print("Access your chatbot at:", public_url)
 ```
 
->Now, use the public URL to open the chatbot. 
+---
+
+>**Now, use the public URL to open the chatbot.**
 
 ```bash
+### 🔐 Add Your ngrok Auth Token
 !ngrok config add-authtoken "ngrok_authentication_code"
 from pyngrok import ngrok
 public_url = ngrok.connect(3000)
